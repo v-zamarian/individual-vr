@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Belt : MonoBehaviour {
 
-    public float force;
+    public float speed; //public for testing
+
     float start;
+    RigidbodyConstraints constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
 	// Use this for initialization
 	void Start () {
         start = Time.time;
+        //speed = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -18,11 +21,37 @@ public class Belt : MonoBehaviour {
         float current = Time.time;
 
         if (current - start > 5.0) {
-            force += 2;
+            speed += 1;
             start = current;
         }*/
 
-        transform.GetComponent<Rigidbody>().velocity = force * transform.right;
+        /* texture simulating belt movement, moves texture over time
+        offset += new Vector2(0, 0.1f) * Time.deltaTime;
+        renderer.material.SetTextureOffset("_MainTex", offset);
+        */
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Object")) {
+            return;
+        }
         
-	}
+        collision.transform.GetComponent<Rigidbody>().constraints = constraints;
+    }
+
+    private void OnCollisionStay(Collision collision) {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Object")) {
+            return;
+        }
+
+        collision.transform.GetComponent<Rigidbody>().velocity = speed * transform.right;
+    }
+
+    private void OnCollisionExit(Collision collision) {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Object")) {
+            return;
+        }
+
+        collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    }
 }
