@@ -4,23 +4,36 @@ using UnityEngine;
 
 public class BeltController : MonoBehaviour {
 
-    public float speed; //public for testing
+    //[HideInInspector]
+    public float speed;
+
+    public float startingSpeed; //testing only, set to 0.0 later
+
+    public float speedIncrement; //public for now
+    bool singleCall;
 
     float start;
+    float waitTime;
 
     // Use this for initialization
     void Start () {
         start = Time.time;
-        //speed = 0.0f;
+        speed = startingSpeed;
+        singleCall = true;
     }
 
     // Update is called once per frame
     void Update () {
+        if (LeverController.instance.start && singleCall) {
+            singleCall = false;
+            speed = speedIncrement;
+        }
+
         //increase the speed over time
         /*float current = Time.time;
 
-        if (current - start > 5.0) {
-            speed += 1;
+        if (current - start > waitTime) {
+            speed += speedIncrement;
             start = current;
         }*/
     }

@@ -9,19 +9,12 @@ public class Belt : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        speed = transform.parent.GetComponent<BeltController>().speed;
+        speed = transform.parent.parent.GetComponent<BeltController>().speed;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        /* texture simulating belt movement, moves texture over time
-        Vector2 offset = new Vector2(0f, 0f); 
-        
-        offset += new Vector2(0, 0.1f) * Time.deltaTime;
-        renderer.material.SetTextureOffset("_MainTex", offset);
-        */
-
-        speed = transform.parent.GetComponent<BeltController>().speed;
+        speed = transform.parent.parent.GetComponent<BeltController>().speed;
     }
 
     private void OnCollisionEnter(Collision collision) {
