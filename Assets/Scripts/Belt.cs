@@ -37,4 +37,12 @@ public class Belt : MonoBehaviour {
             collision.transform.GetComponent<Rigidbody>().velocity = speed * transform.right;
         }
     }
+
+    private void OnCollisionExit(Collision collision){
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Object")){
+            return;
+        }
+
+        collision.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    }
 }

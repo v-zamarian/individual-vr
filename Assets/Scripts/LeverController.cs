@@ -25,7 +25,7 @@ public class LeverController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (rotator.GetValue() > 40.0f) { //start the belt movement after the lever is pulled a certain amount
+        if (rotator.GetValue() > 20.0f) { //start the belt movement after the lever is pulled a certain amount
             start = true;
         }
 	}
