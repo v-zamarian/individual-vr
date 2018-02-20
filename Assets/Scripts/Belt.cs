@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿// Victor Zamarian
+// 2/20/18
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Belt : MonoBehaviour {
-
     RigidbodyConstraints constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
     float speed;
 
@@ -30,7 +32,7 @@ public class Belt : MonoBehaviour {
             return;
         }
 
-        if (speed == 0.0f) {
+        if (speed == 0.0f) { //items won't spawn when speed is 0, only for testing
             collision.transform.GetComponent<Rigidbody>().constraints = constraints | RigidbodyConstraints.FreezePositionX;
         } else {
             collision.transform.GetComponent<Rigidbody>().constraints = constraints;

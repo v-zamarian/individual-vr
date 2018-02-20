@@ -1,22 +1,19 @@
-﻿using System.Collections;
+﻿// Victor Zamarian
+// 2/20/18
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemTrigger : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.layer == LayerMask.NameToLayer("Object")) {
-            Destroy(other.gameObject);
+            
+            if (other.gameObject.transform.parent != null) {
+                Destroy(other.gameObject.transform.parent.gameObject);
+            } else {
+                Destroy(other.gameObject);
+            }
         }
     }
 }

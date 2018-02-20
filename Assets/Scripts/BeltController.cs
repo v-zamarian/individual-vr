@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿// Victor Zamarian
+// 2/20/18
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BeltController : MonoBehaviour {
-
     //[HideInInspector]
     public float speed;
 
@@ -13,7 +15,7 @@ public class BeltController : MonoBehaviour {
     bool singleCall;
 
     float start;
-    float waitTime;
+    float waitTime = 5.0f;
 
     // Use this for initialization
     void Start () {
@@ -29,7 +31,7 @@ public class BeltController : MonoBehaviour {
             speed = speedIncrement;
         }
 
-        //increase the speed over time
+        //increase the speed over time, implemented later
         /*float current = Time.time;
 
         if (current - start > waitTime) {
